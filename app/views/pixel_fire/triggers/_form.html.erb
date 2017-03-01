@@ -11,22 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
+    <%= f.check_box :fire_on_all_pages %>&nbsp;
     <%= f.label :fire_on_all_pages %>
-    <%= f.check_box :fire_on_all_pages %>
   </div>
 
-  <div class="field">
-    <%= f.label :page_url %>
-    <%= f.text_field :page_url %>
+  <div class="form-group">
+    <%= f.label :page_url, "URL Regex" %>
+    <%= f.text_field :page_url, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <label>Tags</label>
+    <ul class="list-unstyled">
+    <% ::PixelFire::Tag.all.order(name: :asc).each do |tag| %>
+      <li>
+        <input type="checkbox" name="tag_ids[]"
+               value="<%= tag.id %>" <%= "checked=\"checked\"" if trigger.tags.include?(tag) %> />
+        <%= tag.name %>
+      </li>
+    <% end %>
+    </ul>
   </div>
+
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>

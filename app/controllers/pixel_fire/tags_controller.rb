@@ -27,6 +27,7 @@ module PixelFire
       @tag = Tag.new(tag_params)
 
       if @tag.save
+        @tag.update_triggers(params[:trigger_ids])
         redirect_to @tag, notice: 'Tag was successfully created.'
       else
         render :new
@@ -36,6 +37,7 @@ module PixelFire
     # PATCH/PUT /tags/1
     def update
       if @tag.update(tag_params)
+        @tag.update_triggers(params[:trigger_ids])
         redirect_to @tag, notice: 'Tag was successfully updated.'
       else
         render :edit
@@ -56,7 +58,7 @@ module PixelFire
 
       # Only allow a trusted parameter "white list" through.
       def tag_params
-        params.require(:tag).permit(:name, :custom_html)
+        params.require(:tag).permit(:name, :custom_html, :target)
       end
   end
 end

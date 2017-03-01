@@ -1,14 +1,26 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="page-header">
+  <%= link_to 'Back', tags_path, class: "pull-right btn btn-link" %>
+  <%= link_to 'Edit', edit_tag_path(@tag), class: "pull-right btn btn-primary" %>
+  Tag: <%= @tag.name %>
+</h1>
+
 <p>
   <strong>Name:</strong>
   <%= @tag.name %>
 </p>
 
 <p>
-  <strong>Custom html:</strong>
-  <%= @tag.custom_html %>
+  <strong>Custom HTML:</strong>
+  <pre><%= @tag.custom_html %></pre>
 </p>
 
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+<p>
+  <strong>Triggers:</strong>
+  <ul>
+    <% @tag.triggers.each do |trigger| %>
+      <li><%= trigger.name %></li>
+    <% end %>
+  </ul>
+</p>

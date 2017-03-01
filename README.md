@@ -14,11 +14,13 @@ gem 'pixel_fire'
 And then execute:
 ```bash
 $ bundle
+$ bin/rails pixel_fire:install:migrations
+$ bin/rails db:migrate
 ```
 
-Or install it yourself as:
-```bash
-$ gem install pixel_fire
+Add the engine to your routes file:
+```ruby
+mount ::PixelFire::Engine, at: "/pixel_fire"
 ```
 
 ## Contributing

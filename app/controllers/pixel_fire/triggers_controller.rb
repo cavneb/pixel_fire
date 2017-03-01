@@ -27,6 +27,7 @@ module PixelFire
       @trigger = Trigger.new(trigger_params)
 
       if @trigger.save
+        @trigger.update_tags(params[:tag_ids])
         redirect_to @trigger, notice: 'Trigger was successfully created.'
       else
         render :new
@@ -36,6 +37,7 @@ module PixelFire
     # PATCH/PUT /triggers/1
     def update
       if @trigger.update(trigger_params)
+        @trigger.update_tags(params[:tag_ids])
         redirect_to @trigger, notice: 'Trigger was successfully updated.'
       else
         render :edit

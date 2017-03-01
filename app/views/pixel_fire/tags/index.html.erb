@@ -1,12 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tags</h1>
+<h1 class="page-header">
+  <%= link_to 'New Tag', new_tag_path, class: "pull-right btn btn-default" %>
+  Tags
+</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
-      <th>Custom html</th>
+      <th>Target</th>
+      <th>Triggers</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,15 +19,18 @@
     <% @tags.each do |tag| %>
       <tr>
         <td><%= tag.name %></td>
-        <td><%= tag.custom_html %></td>
-        <td><%= link_to 'Show', tag %></td>
-        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
-        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= tag.target %></td>
+        <td>
+          <% tag.triggers.each do |trigger| %>
+            <span class="label label-default"><%= trigger.name %></span>
+          <% end %>
+        </td>
+        <td class="text-right">
+          <%= link_to 'Show', tag, class: "btn btn-xs btn-info" %>
+          <%= link_to 'Edit', edit_tag_path(tag), class: "btn btn-xs btn-primary" %>
+          <%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger" %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Tag', new_tag_path %>

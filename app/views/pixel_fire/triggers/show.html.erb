@@ -1,5 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<h1 class="page-header">
+  <%= link_to 'Back', triggers_path, class: "pull-right btn btn-link" %>
+  <%= link_to 'Edit', edit_trigger_path(@trigger), class: "pull-right btn btn-primary" %>
+  Trigger: <%= @trigger.name %>
+</h1>
+
 <p>
   <strong>Name:</strong>
   <%= @trigger.name %>
@@ -11,9 +17,15 @@
 </p>
 
 <p>
-  <strong>Page url:</strong>
-  <%= @trigger.page_url %>
+  <strong>URL Contains:</strong>
+  <code><%= @trigger.page_url %></code>
 </p>
 
-<%= link_to 'Edit', edit_trigger_path(@trigger) %> |
-<%= link_to 'Back', triggers_path %>
+<p>
+  <strong>Tags:</strong>
+  <ul>
+    <% @trigger.tags.each do |tag| %>
+      <li><%= tag.name %></li>
+    <% end %>
+  </ul>
+</p>

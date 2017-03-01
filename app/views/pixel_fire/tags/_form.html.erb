@@ -11,17 +11,35 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control", required: true %>
   </div>
 
-  <div class="field">
-    <%= f.label :custom_html %>
-    <%= f.text_area :custom_html %>
+  <div class="form-group">
+    <%= f.label :target, "Embed Target" %>
+    <%= f.select :target, ["head", "body"], {}, class: "form-control", required: true %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-group">
+    <%= f.label :custom_html, "Custom HTML" %>
+    <%= f.text_area :custom_html, class: "form-control", rows: 12, required: true %>
   </div>
+
+  <div class="form-group">
+    <label>Triggers</label>
+    <ul class="list-unstyled">
+    <% ::PixelFire::Trigger.all.order(name: :asc).each do |trigger| %>
+      <li>
+        <label style="font-weight: normal;">
+          <input type="checkbox" name="trigger_ids[]"
+                 value="<%= trigger.id %>" <%= "checked=\"checked\"" if tag.triggers.include?(trigger) %> />
+          <%= trigger.name %>
+        </label>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
