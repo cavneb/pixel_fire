@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @trigger.name %>
+</p>
+
+<p>
+  <strong>Fire on all pages:</strong>
+  <%= @trigger.fire_on_all_pages %>
+</p>
+
+<p>
+  <strong>Page url:</strong>
+  <%= @trigger.page_url %>
+</p>
+
+<%= link_to 'Edit', edit_trigger_path(@trigger) %> |
+<%= link_to 'Back', triggers_path %>
