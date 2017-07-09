@@ -1,4 +1,4 @@
-[![Sponsor](https://cavneb.ngrok.io/sponsor/github/cavneb/pixel_fire.svg)](https://codesponsor.io/link/github/cavneb/pixel_fire)
+[![Sponsor](https://cavneb.ngrok.io/sponsor/github/cavneb/pixel_fire.svg)](https://cavneb.ngrok.io/link/github/cavneb/pixel_fire)
 
 # PixelFire
 Short description and motivation.
